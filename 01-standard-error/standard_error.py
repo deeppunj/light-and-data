@@ -7,6 +7,7 @@ from scipy import stats
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 from matplotlib.animation import FuncAnimation, PillowWriter
 
 rng = np.random.default_rng(7)  # fixed seed so the result is repeatable
@@ -54,7 +55,9 @@ frames = list(range(2, 11)) + list(range(12, 31, 2)) + list(range(35, 101, 5)) +
 
 # --- 5. Drawing ---
 BG, FG, ACC, DIM, WARM = "#0E1513", "#E6EFEC", "#63D2C6", "#A9BDB8", "#F2B866"
-plt.rcParams["font.family"] = ["Inter", "DejaVu Sans"]  # Inter if installed, otherwise DejaVu
+# Use the Inter font if it is installed, otherwise matplotlib's default font
+installed_fonts = {f.name for f in font_manager.fontManager.ttflist}
+plt.rcParams["font.family"] = "Inter" if "Inter" in installed_fonts else "DejaVu Sans"
 out = str(Path(__file__).parent) + "/"  # save the images next to this script
 
 def style(ax):
