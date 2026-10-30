@@ -6,11 +6,11 @@ All data in this repo is simulated, so the true answer is known and you can see 
 
 ## Posts
 
-| # | Topic | Folder |
-|---|---|---|
+| # | Topic                                      | Folder                                 |
+|---|--------------------------------------------|----------------------------------------|
 | 1 | Averaging noisy scans: standard error σ/√N | [01-standard-error](01-standard-error) |
-| 2 | Fourier transform: how OCT sees depth | coming |
-| 3 | When averaging fails: speckle | coming |
+| 2 | Fourier transform: how OCT sees depth      | coming                                 |
+| 3 | When averaging fails: speckle              | coming                                 |
 
 ## Run a post
 
@@ -23,6 +23,9 @@ python 01-standard-error/standard_error.py
 
 The images are saved in the post's own folder.
 
-## Author
+## About the author
 
-Deep Punj, PhD. Optical engineer at Ghent University, working on lasers, OCT and imaging data with Python and SQL.
+**Deep Punj, PhD**, optical engineer and researcher at Ghent University, Belgium.
+I work on lasers, OCT, optical measurement and imaging data, and build Python, SQL and machine-learning projects around them.
+
+[punjdeep.com](https://punjdeep.com) · [LinkedIn](https://www.linkedin.com/in/deeppunj/) · [GitHub](https://github.com/deeppunj)
