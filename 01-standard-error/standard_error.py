@@ -20,12 +20,12 @@ def layer(center, width, height):
 
 true_signal = layer(0.25, 0.02, 1.0) + layer(0.50, 0.02, 0.7) + layer(0.75, 0.02, 0.5)
 
-# 2. 100 scans = true signal + independent random noise (sigma = 1) ---
+# 2. 100 scans = true signal + independent random noise (sigma = 1)
 n_scans = 100
 noise_sigma = 1.0
 scans = true_signal + rng.normal(0, noise_sigma, (n_scans, depth.size))
 
-# --- 3. The quantity we want: height of the first layer (one depth pixel at its peak) ---
+# 3. The quantity we want: height of the first layer (one depth pixel at its peak)
 peak = np.argmax(true_signal)
 true_height = true_signal[peak]
 readings = scans[:, peak]  # one noisy reading of that height per scan
@@ -50,10 +50,10 @@ for n in [4, 16, 64, 100]:
 # Sample size needed for +-0.2 when sigma = 1:  n = (1.96 * sigma / 0.2)^2
 print("scans needed for +-0.2:", round((1.96 * noise_sigma / 0.2) ** 2))
 
-# --- 4. Frames: slow at the start, then faster, then hold the last one ---
+# 4. Frames: slow at the start, then faster, then hold the last one
 frames = list(range(2, 11)) + list(range(12, 31, 2)) + list(range(35, 101, 5)) + [100] * 12
 
-# --- 5. Drawing ---
+# 5. Drawing
 BG, FG, ACC, DIM, WARM = "#0E1513", "#E6EFEC", "#63D2C6", "#A9BDB8", "#F2B866"
 # Use the Inter font if it is installed, otherwise matplotlib's default font
 installed_fonts = {f.name for f in font_manager.fontManager.ttflist}
@@ -103,7 +103,7 @@ def draw(i):
 anim = FuncAnimation(fig, draw, frames=len(frames), interval=150)
 anim.save(out + "standard_error.gif", writer=PillowWriter(fps=7))
 
-# --- 6. Static before/after image (N = 1 vs N = 100) ---
+# 6. Static before/after image (N = 1 vs N = 100)
 fig2, (a, b) = plt.subplots(2, 1, figsize=(8, 8), dpi=135, facecolor=BG, sharex=True)
 fig2.subplots_adjust(left=0.13, right=0.94, top=0.80, bottom=0.14, hspace=0.25)
 fig2.text(0.10, 0.94, "Same sample. Same instrument.", color=FG, fontsize=25, weight="bold")
