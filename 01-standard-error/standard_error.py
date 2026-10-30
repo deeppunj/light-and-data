@@ -12,7 +12,7 @@ from matplotlib.animation import FuncAnimation, PillowWriter
 
 rng = np.random.default_rng(7)  # fixed seed so the result is repeatable
 
-# --- 1. The "true" signal: three reflecting layers at different depths ---
+# 1. The "true" signal: three reflecting layers at different depths ---
 depth = np.linspace(0, 1, 400)
 
 def layer(center, width, height):
@@ -20,7 +20,7 @@ def layer(center, width, height):
 
 true_signal = layer(0.25, 0.02, 1.0) + layer(0.50, 0.02, 0.7) + layer(0.75, 0.02, 0.5)
 
-# --- 2. 100 scans = true signal + independent random noise (sigma = 1) ---
+# 2. 100 scans = true signal + independent random noise (sigma = 1) ---
 n_scans = 100
 noise_sigma = 1.0
 scans = true_signal + rng.normal(0, noise_sigma, (n_scans, depth.size))
