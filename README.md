@@ -9,7 +9,7 @@ All data in this repo is simulated, so the true answer is known and you can see 
 | # | Topic                                      | Folder                                 |
 |---|--------------------------------------------|----------------------------------------|
 | 1 | Averaging noisy scans: standard error σ/√N | [01-standard-error](01-standard-error) |
-| 2 | Fourier transform: how OCT sees depth      | coming                                 |
+| 2 | Fourier transform: how OCT sees depth      | [02-fourier-oct](02-fourier-oct)       |
 | 3 | When averaging fails: speckle              | coming                                 |
 
 ## Run a post
