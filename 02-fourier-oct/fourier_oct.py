@@ -10,7 +10,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap
-from matplotlib.animation import FuncAnimation, PillowWriter, FFMpegWriter
+from matplotlib.animation import FuncAnimation, FFMpegWriter
+import subprocess
 
 # 1. The simulated instrument
 # The detector records the light spectrum at N wavenumbers k (k = 2 * pi / wavelength).
@@ -212,11 +213,14 @@ def draw(i):
         caption.set_text(captions[act])
     style(ax1); style(ax2)
 
-# 7. Save: an mp4 for LinkedIn (smooth) and a smaller gif for the README
+# 7. Save: an mp4, and a gif made from it (a gif plays on its own in a LinkedIn post)
 anim = FuncAnimation(fig, draw, frames=len(frames), interval=1000 / 15)
 anim.save(out + "fourier_oct.mp4", writer=FFMpegWriter(fps=15, codec="libx264",
           extra_args=["-pix_fmt", "yuv420p", "-crf", "20"]))
 
-gif_frames = list(range(0, len(frames), 2))
-anim_gif = FuncAnimation(fig, draw, frames=gif_frames, interval=1000 / 7.5)
-anim_gif.save(out + "fourier_oct.gif", writer=PillowWriter(fps=7.5), dpi=80)
+# Gif: 800 px, 10 frames per second, 96 colours (keeps the file under 5 MB)
+gif_filter = ("fps=10,scale=800:-1:flags=lanczos,split[a][b];"
+              "[a]palettegen=max_colors=96:stats_mode=diff[p];"
+              "[b][p]paletteuse=dither=none:diff_mode=rectangle")
+subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", out + "fourier_oct.mp4",
+                "-vf", gif_filter, out + "fourier_oct.gif"], check=True)

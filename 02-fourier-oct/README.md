@@ -34,7 +34,7 @@ A weaker reflector gives a smaller peak (0.6 times as high in the animation).
 python fourier_oct.py
 ```
 
-This writes `fourier_oct.mp4` (for posting) and `fourier_oct.gif` (small, for this page) next to the script. It needs ffmpeg for the mp4. It takes a couple of minutes. Try changing `layer_base` or `n_points` near the top.
+This writes `fourier_oct.mp4` and `fourier_oct.gif` (800 px, under 5 MB, plays on its own in a post) next to the script. It needs ffmpeg. It takes a couple of minutes. Try changing `layer_base` or `n_points` near the top.
 
 ## Limit
 
